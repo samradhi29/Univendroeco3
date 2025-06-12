@@ -4,17 +4,16 @@
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/typescript/tsbuildinfo",
-    "noEmit": false,                  // <-- Change this to false to enable emitting JS files
-    "outDir": "dist",                 // <-- specify output folder for JS
-    "target": "ES2020",               // compatible with current Node.js versions
-    "module": "CommonJS",             // Node.js standard module system
+    "noEmit": false,                          // Emit compiled JS files
+    "outDir": "dist",                         // Where to place JS output
+    "target": "ES2020",                       // Compatible with modern Node.js
+    "module": "CommonJS",                     // Required for Node.js
     "strict": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "jsx": "preserve",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "allowImportingTsExtensions": true,
-    "moduleResolution": "node",      // 'node' module resolution for Node.js apps
+    "moduleResolution": "node",               // Node-style module resolution
     "baseUrl": ".",
     "types": ["node", "vite/client"],
     "paths": {
@@ -23,4 +22,3 @@
     }
   }
 }
-
