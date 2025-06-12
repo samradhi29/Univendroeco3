@@ -1,13 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 
+interface User {
+  id: string;
+  email: string;
+  role: "seller" | "buyer" | "super_admin" | "admin" | string;
+  originalRole?: string;
+  isDomainOwner?: boolean;
+  currentDomain?: string;
+  // Add any other properties your user object might have here
+}
+
 export function useAuth() {
   const {
     data: user,
     isLoading,
     refetch,
-  } = useQuery({
+  } = useQuery<User>({
     queryKey: ["/api/auth/user"],
+    queryFn: () => apiRequest("/api/auth/user"), // make sure to provide the query function
     retry: false,
     refetchOnWindowFocus: true,
     refetchOnMount: true,
@@ -22,7 +33,6 @@ export function useAuth() {
   const isDomainOwner = user?.isDomainOwner;
   const originalRole = user?.originalRole;
 
-  // Log auth state changes for debugging
   if (user) {
     console.log("Auth state:", {
       userId: user.id,
